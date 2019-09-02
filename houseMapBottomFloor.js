@@ -13,7 +13,7 @@ function floor(path) {
 
   coordinateSets.rooms.forEach(function(item) {
 
-      item.coordinates.forEach(function(coordinates,index) {
+      item.coordinates.forEach(function(coordinates) {
 
         ctx.beginPath();
         ctx.moveTo(coordinates[0].x * scale, coordinates[0].y * scale);
