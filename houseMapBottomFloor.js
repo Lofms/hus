@@ -37,7 +37,7 @@ function floor(path) {
   // Render elements.
 
       ctx.fillStyle = "";
-ctx.globalAlpha = 0.2;
+ctx.globalAlpha = 0.04;
       ctx.fillRect(item.coordinates[0][0].x*10+5, item.coordinates[0][0].y*10+5, ((item.coordinates[0][1].x - item.coordinates[0][0].x)*10)-10, ((item.coordinates[0][3].y - item.coordinates[0][2].y)*10)-10);
 
 ctx.globalAlpha = 1;
