@@ -20,27 +20,28 @@ function floor(path) {
   elemTop = canvas.offsetTop,
   elements = [];
   ctx.font = "10px Arial";
+
   coordinateSets.rooms.forEach(function(item,index) {
 
     var arr = item.coordinates[0];
-      var xMin = arr.hasMin('x').x;
-      var xMax = arr.hasMax('x').x;
-
-      var yMin = arr.hasMin('y').y;
-      var yMax = arr.hasMax('y').y;
-
-
-      ctx.fillText(item.name, scale*(xMin)+ 10, scale*(yMin)+ 10);
+    var xMin = arr.hasMin('x').x;
+    var xMax = arr.hasMax('x').x;
+    var yMin = arr.hasMin('y').y;
+    var yMax = arr.hasMax('y').y;
+    console.log(event.pageX);
+    console.log(elemLeft);
+    ctx.fillText(item.name, scale*(xMin)+ 10, scale*(yMin)+ 10);
 
 
   canvas.addEventListener('click', function(event) {
+
       var x = event.pageX - elemLeft,
           y = event.pageY - elemTop;
 
 
-          if (y > item.coordinates[0][0].y*10+5 && y < item.coordinates[0][0].y*10+5 + ((item.coordinates[0][3].y - item.coordinates[0][2].y)*10)-10 && x > item.coordinates[0][0].x*10+5 && x < item.coordinates[0][0].x*10+5 + ((item.coordinates[0][3].y - item.coordinates[0][2].y)*10)-10) {
+      if (y > yMin*10 && y < yMax*10 && x > xMin*10 && x < xMax*10) {
               room(index);
-          }
+      }
 
 
   }, false);
@@ -48,12 +49,11 @@ function floor(path) {
 
   // Render elements.
 
-      ctx.fillStyle = "";
-ctx.globalAlpha = 0.04;
-      ctx.fillRect(xMin*scale+5, yMin*scale+5, (xMax*scale - xMin*scale)-10, (yMax*scale - yMin*scale)-10);
-
-ctx.globalAlpha = 1;
-});
+  ctx.fillStyle = "";
+  ctx.globalAlpha = 0.1;
+  ctx.fillRect(xMin*scale, yMin*scale, (xMax*scale - xMin*scale), (yMax*scale - yMin*scale));
+  ctx.globalAlpha = 1;
+  });
 
   coordinateSets.rooms.forEach(function(item) {
 

@@ -1,22 +1,30 @@
-var room;
+
 function room(room) {
 
-  document.getElementById("canvas").innerHTML = "";
-  var canvas = document.getElementById("canvas").appendChild(document.createElement("canvas"));
-  var size = canvas.width = canvas.height = 1000;
-  var scale = 20;
-  var ctx = canvas.getContext("2d");
-  var coordinateSets = data;
+    document.getElementById("canvas").innerHTML = "";
+    var canvas = document.getElementById("canvas").appendChild(document.createElement("canvas"));
+    var size = canvas.width = canvas.height = 1000;
+    var scale = 20;
+    var ctx = canvas.getContext("2d");
+    var coordinateSets = data;
 
 
+    var item=coordinateSets.rooms[room]
 
 
+    var arr = item.coordinates[0];
+    var xMin = arr.hasMin('x').x;
+    var xMax = arr.hasMax('x').x;
+
+    var yMin = arr.hasMin('y').y;
+    var yMax = arr.hasMax('y').y;
 
 
+    ctx.fillText(item.name, scale*(xMin)+ 10, scale*(yMin)+ 10);
 
+    console.log(item +"dsadasdasdsa")
 
-
-  // Render elements.
+    // Render elements.
 
 
 
@@ -26,16 +34,12 @@ function room(room) {
     ctx.beginPath();
     ctx.moveTo(1 , 1 );
 
-        coordinateSets.rooms[room].coordinates[0].forEach(function(coordinate) {
-          console.log(coordinateSets.rooms[room].name)
-          console.log(coordinate.x)
-          console.log(coordinateSets.rooms[room].coordinates[0][0].x)
-console.log(coordinate.x-coordinateSets.rooms[room].coordinates[0][0].x + "   x")
-console.log( coordinate.y-coordinateSets.rooms[room].coordinates[0][0].y+ "   y")
-          ctx.lineTo(scale*(coordinate.x-coordinateSets.rooms[room].coordinates[0][0].x) , scale*(coordinate.y-coordinateSets.rooms[room].coordinates[0][0].y) );
-        });
-        ctx.closePath();
-        ctx.stroke();
+    coordinateSets.rooms[room].coordinates[0].forEach(function(coordinate) {
+
+        ctx.lineTo(scale*(coordinate.x-coordinateSets.rooms[room].coordinates[0][0].x) , scale*(coordinate.y-coordinateSets.rooms[room].coordinates[0][0].y) );
+    });
+    ctx.closePath();
+    ctx.stroke();
 
 
 }
